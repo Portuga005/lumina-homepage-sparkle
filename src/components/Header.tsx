@@ -1,11 +1,11 @@
 
-import React, { useState } from 'react';
+import * as React from 'react';
 import { ShoppingCart } from 'lucide-react';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [cartItems] = useState(2); // Mock cart items count
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [cartItems] = React.useState(2); // Mock cart items count
 
   const navItems = [
     { name: 'Home', href: '/' },
