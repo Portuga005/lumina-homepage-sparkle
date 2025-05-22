@@ -6,6 +6,8 @@ import RelatedProducts from '@/components/RelatedProducts';
 import ProductInfo from '@/components/ProductInfo';
 import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart, Eye } from 'lucide-react';
+import { showAddToCartToast } from '@/components/CartToast';
+import { Schema } from '@/components/Schema';
 
 // Mock product data - would typically come from an API
 const mockProduct = {
@@ -23,7 +25,8 @@ const mockProduct = {
     "/products/necklace-3.jpg",
     "/products/necklace-4.jpg"
   ],
-  isNew: true
+  isNew: true,
+  reviewCount: 56
 };
 
 // Mock related products
@@ -66,6 +69,8 @@ const ProductDetail: React.FC = () => {
   const handleAddToCart = () => {
     // Logic to add to cart would go here
     console.log(`Added ${quantity} of item ${id} with size ${selectedSize} to cart`);
+    // Show toast notification
+    showAddToCartToast(mockProduct.name);
     // In a real app, this would dispatch to a cart state manager or API
   };
 
@@ -88,6 +93,20 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Schema markup for SEO */}
+      <Schema 
+        product={{
+          name: mockProduct.name,
+          description: mockProduct.description,
+          image: mockProduct.images[0],
+          price: mockProduct.price,
+          currency: "BRL",
+          rating: mockProduct.rating,
+          reviewCount: mockProduct.reviewCount,
+          inStock: mockProduct.stock > 0
+        }} 
+      />
+      
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Product Gallery */}
         <ProductGallery images={mockProduct.images} onView360Click={handleView360} />
@@ -103,7 +122,7 @@ const ProductDetail: React.FC = () => {
           <div className="flex flex-wrap gap-4 mt-8">
             <Button 
               onClick={handleAddToCart} 
-              className="flex-1 bg-lumina-dark text-white hover:bg-lumina-dark/90"
+              className="flex-1 bg-lumina-dark text-white hover:bg-lumina-dark/90 hover:scale-105 transition-transform duration-300"
             >
               <ShoppingCart className="mr-2 h-4 w-4" />
               Adicionar ao Carrinho
@@ -111,7 +130,7 @@ const ProductDetail: React.FC = () => {
             
             <Button 
               onClick={handleBuyNow} 
-              className="flex-1 bg-lumina-gold text-lumina-dark hover:bg-lumina-gold/90"
+              className="flex-1 bg-lumina-gold text-lumina-dark hover:bg-lumina-gold/90 hover:scale-105 transition-transform duration-300"
             >
               Comprar Agora
             </Button>
@@ -119,7 +138,7 @@ const ProductDetail: React.FC = () => {
             <Button 
               onClick={handleAddToWishlist} 
               variant="outline" 
-              className="border-lumina-gold text-lumina-dark hover:bg-lumina-gold/10"
+              className="border-lumina-gold text-lumina-dark hover:bg-lumina-gold/10 hover:scale-105 transition-transform duration-300"
             >
               <Heart className="h-4 w-4" />
             </Button>
@@ -127,7 +146,7 @@ const ProductDetail: React.FC = () => {
             <Button 
               onClick={handleView360} 
               variant="outline" 
-              className="border-lumina-gold text-lumina-dark hover:bg-lumina-gold/10"
+              className="border-lumina-gold text-lumina-dark hover:bg-lumina-gold/10 hover:scale-105 transition-transform duration-300"
             >
               <Eye className="h-4 w-4" />
               <span className="ml-2 hidden sm:inline">Visualização 360°</span>

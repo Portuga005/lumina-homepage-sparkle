@@ -13,6 +13,8 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Account from "./pages/Account";
+import WhatsAppButton from "./components/WhatsAppButton";
+import LuminaCookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +36,8 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <WhatsAppButton />
+          <LuminaCookieConsent />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

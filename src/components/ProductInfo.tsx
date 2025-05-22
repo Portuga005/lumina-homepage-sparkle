@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Star } from 'lucide-react';
+import { showAddToCartToast } from './CartToast';
 
 interface Product {
   id: number;
