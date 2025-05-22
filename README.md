@@ -1,7 +1,3 @@
-Claro! Aqui está a tradução para o português:
-
----
-
 # Bem-vindo ao seu projeto Lovable
 
 ## Informações do projeto
