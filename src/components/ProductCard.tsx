@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { showAddToCartToast } from './CartToast';
 
 interface Product {
   id: number;
@@ -14,6 +16,12 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    navigate(`/produto/${product.id}`);
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
       <div className="relative overflow-hidden">
@@ -37,7 +45,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <p className="font-roboto text-xl font-bold text-lumina-gold mb-3">
           R$ {product.price.toFixed(2).replace('.', ',')}
         </p>
-        <button className="w-full bg-lumina-dark text-white py-2 rounded-lg font-roboto font-medium hover:bg-lumina-gold hover:text-lumina-dark transition-all duration-300 group-hover:border-lumina-gold border border-transparent">
+        <button 
+          className="w-full bg-lumina-dark text-white py-2 rounded-lg font-roboto font-medium hover:bg-lumina-gold hover:text-lumina-dark transition-all duration-300 group-hover:border-lumina-gold border border-transparent"
+          onClick={handleViewDetails}
+        >
           Ver Detalhes
         </button>
       </div>

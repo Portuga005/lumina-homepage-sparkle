@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { toast } from 'sonner';
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +13,13 @@ const Newsletter = () => {
       console.log('Newsletter subscription:', email);
       setIsSubscribed(true);
       setEmail('');
+      
+      // Show toast notification
+      toast.success('Inscrição realizada!', {
+        description: 'Você receberá nossas novidades em breve.',
+        position: 'bottom-center',
+        duration: 3000,
+      });
       
       // Reset success message after 3 seconds
       setTimeout(() => {

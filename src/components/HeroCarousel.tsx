@@ -1,8 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { showAddToCartToast } from './CartToast';
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   const slides = [
     {
@@ -10,21 +13,25 @@ const HeroCarousel = () => {
       title: "Coleção Luz de Verão",
       subtitle: "Peças radiantes para iluminar seus dias",
       image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      cta: "Comprar Agora"
+      cta: "Comprar Agora",
+      productId: 101,
+      productName: "Colar Luz de Verão"
     },
     {
       id: 2,
       title: "Black Friday Especial",
       subtitle: "Até 50% OFF em peças selecionadas",
       image: "https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      cta: "Ver Ofertas"
+      cta: "Ver Ofertas",
+      collectionSlug: "promocoes"
     },
     {
       id: 3,
       title: "Noivas Lúmina",
       subtitle: "O brilho perfeito para o seu dia especial",
       image: "https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      cta: "Explorar Coleção"
+      cta: "Explorar Coleção",
+      collectionSlug: "noivas"
     }
   ];
 
@@ -46,6 +53,35 @@ const HeroCarousel = () => {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const handleSlideAction = (slide: any) => {
+    // If slide has productId, add to cart and go to checkout
+    if (slide.productId) {
+      // Add to cart logic (in a real app, this would interact with a cart context or localStorage)
+      const cartItem = {
+        id: slide.productId,
+        name: slide.productName,
+        price: 299.90, // Example price
+        quantity: 1,
+        image: slide.image
+      };
+      
+      // Save to localStorage as a simple example
+      const currentCart = JSON.parse(localStorage.getItem('luminaCart') || '[]');
+      currentCart.push(cartItem);
+      localStorage.setItem('luminaCart', JSON.stringify(currentCart));
+      
+      // Show toast notification
+      showAddToCartToast(slide.productName);
+      
+      // Navigate to checkout
+      navigate('/checkout');
+    } 
+    // If slide has collectionSlug, go to that collection
+    else if (slide.collectionSlug) {
+      navigate(`/colecao/${slide.collectionSlug}`);
+    }
   };
 
   return (
@@ -71,7 +107,10 @@ const HeroCarousel = () => {
                 <p className="font-roboto text-lg md:text-xl mb-8 animate-fade-in">
                   {slide.subtitle}
                 </p>
-                <button className="bg-lumina-gold text-lumina-dark px-8 py-3 rounded-full font-roboto font-medium text-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 animate-fade-in">
+                <button 
+                  className="bg-lumina-gold text-lumina-dark px-8 py-3 rounded-full font-roboto font-medium text-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 animate-fade-in"
+                  onClick={() => handleSlideAction(slide)}
+                >
                   {slide.cta}
                 </button>
               </div>
