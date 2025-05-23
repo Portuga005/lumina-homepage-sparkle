@@ -38,26 +38,7 @@ const Footer = () => {
                 <Link to="/loja" className="text-gray-300 hover:text-lumina-gold transition-colors">Loja</Link>
               </li>
               <li>
-                <Link to="/depoimentos" className="text-gray-300 hover:text-lumina-gold transition-colors">Depoimentos</Link>
-              </li>
-              <li>
                 <Link to="/contato" className="text-gray-300 hover:text-lumina-gold transition-colors">Contato</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Policies */}
-          <div>
-            <h3 className="font-playfair text-xl font-semibold mb-4 text-lumina-gold">Políticas</h3>
-            <ul className="space-y-2 font-roboto">
-              <li>
-                <Link to="/politicas" className="text-gray-300 hover:text-lumina-gold transition-colors">Política de Privacidade</Link>
-              </li>
-              <li>
-                <Link to="/trocas" className="text-gray-300 hover:text-lumina-gold transition-colors">Trocas e Devoluções</Link>
-              </li>
-              <li>
-                <Link to="/termos" className="text-gray-300 hover:text-lumina-gold transition-colors">Termos de Uso</Link>
               </li>
             </ul>
           </div>
@@ -80,6 +61,9 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
+          {/* Empty col for balance */}
+          <div></div>
         </div>
 
         <div className="border-t border-gray-700 mt-12 pt-8">
