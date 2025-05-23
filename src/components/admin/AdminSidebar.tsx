@@ -2,15 +2,9 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { 
-  LayoutDashboard, 
-  Package, 
-  ShoppingCart, 
-  Users, 
-  Percent, 
-  Settings, 
+  LayoutDashboard,
   LogOut, 
-  Menu, 
-  X
+  Menu
 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -34,31 +28,6 @@ const AdminSidebar: React.FC = () => {
       label: 'Dashboard',
       icon: <LayoutDashboard className="mr-2 h-5 w-5" />,
       path: '/admin/dashboard'
-    },
-    {
-      label: 'Produtos',
-      icon: <Package className="mr-2 h-5 w-5" />,
-      path: '/admin/dashboard/products'
-    },
-    {
-      label: 'Pedidos',
-      icon: <ShoppingCart className="mr-2 h-5 w-5" />,
-      path: '/admin/dashboard/orders'
-    },
-    {
-      label: 'Clientes',
-      icon: <Users className="mr-2 h-5 w-5" />,
-      path: '/admin/dashboard/customers'
-    },
-    {
-      label: 'Promoções',
-      icon: <Percent className="mr-2 h-5 w-5" />,
-      path: '/admin/dashboard/promotions'
-    },
-    {
-      label: 'Configurações',
-      icon: <Settings className="mr-2 h-5 w-5" />,
-      path: '/admin/dashboard/settings'
     }
   ];
 
